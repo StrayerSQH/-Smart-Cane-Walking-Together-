@@ -2,6 +2,14 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+#include <DHT.h>
+
+
+//--------------------------------------------------------修改信息------------------------------------------------
+//加入了温湿度传感器函数void Temperature_Humidity_Sensor()，详细见66-88行。并没有进行数值返回。未连接华为云，未修改华为云属性。
+//--------------------------------------------------------修改信息------------------------------------------------
+
+
 int sensor;
 /*MQTT连接配置*/
 /*-----------------------------------------------------*/
@@ -54,7 +62,32 @@ void MQTT_Init()
   }
    client.setCallback(callback); //可以接受任何平台下发的内容
 }
-  void MReport_Sensor_inform()
+
+//--------------------------------------------------------温湿度传感器函数------------------------------------------------
+void Temperature_Humidity_Sensor(){
+  delay(2000);
+
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+  if (isnan(humidity) || isnan(temperature)){
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
+
+  float hic = dht.computeHeatIndex(temperature, humidity, false);
+
+  Serial.print(F("Humidity: "));
+  Serial.print(humidity);
+  Serial.print(F("%  Temperature: "));
+  Serial.print(temperature);
+  Serial.print(F("°C "));
+  Serial.print(F("°F  Heat index: "));
+  Serial.print(hic);
+}
+//--------------------------------------------------------温湿度传感器函数------------------------------------------------
+
+void MReport_Sensor_inform()
 {
   String JSONmessageBuffer;//定义字符串接收序列化好的JSON数据
   //以下将生成好的JSON格式消息格式化输出到字符数组中，便于下面通过PubSubClient库发送到服务器
