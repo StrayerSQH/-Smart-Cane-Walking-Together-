@@ -9,7 +9,8 @@
 //加入了温湿度传感器函数void Temperature_Humidity_Sensor()，详细见66-88行。并没有进行数值返回。未连接华为云，未修改华为云属性。
 //--------------------------------------------------------修改信息------------------------------------------------
 
-
+int temp;      //温度
+int humi;      //湿度
 int sensor;
 /*MQTT连接配置*/
 /*-----------------------------------------------------*/
@@ -69,7 +70,8 @@ void Temperature_Humidity_Sensor(){
 
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
-
+  humi=humidity;
+  temp=temperature;
   if (isnan(humidity) || isnan(temperature)){
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
@@ -98,6 +100,8 @@ void MReport_Sensor_inform()
 
   JsonObject services_0_properties = services_0.createNestedObject("properties");
   services_0_properties["sensor"] = 57;                    //sensor为华为云上定义的属性，可有多个
+  services_0_properties["humi"] = humi; 
+  services_0_properties["temp"] = temp; 
   serializeJson(doc, JSONmessageBuffer);
 
     Serial.println("Sending message to MQTT topic..");
