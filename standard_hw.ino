@@ -3,12 +3,17 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include <DHT.h>
-
+#define DHTPN 23
+#define DHTTYPE DHT11
+#define DOOR_PN 22
+#include<ESP32Servo.h>  //调用舵机库 
+int DOOR_ANG;
+Servo servo1;  // 定义舵机对象
+DHT dht(DHTPN,DHTTYPE);
 
 //--------------------------------------------------------修改信息------------------------------------------------
 //加入了温湿度传感器函数void Temperature_Humidity_Sensor()，详细见66-88行。并没有进行数值返回。未连接华为云，未修改华为云属性。
 //--------------------------------------------------------修改信息------------------------------------------------
-
 int temp;      //温度
 int humi;      //湿度
 int sensor;
@@ -67,7 +72,6 @@ void MQTT_Init()
 //--------------------------------------------------------温湿度传感器函数------------------------------------------------
 void Temperature_Humidity_Sensor(){
   delay(2000);
-
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
   humi=humidity;
@@ -89,8 +93,10 @@ void Temperature_Humidity_Sensor(){
 }
 //--------------------------------------------------------温湿度传感器函数------------------------------------------------
 
+
 void MReport_Sensor_inform()
 {
+  Temperature_Humidity_Sensor();
   String JSONmessageBuffer;//定义字符串接收序列化好的JSON数据
   //以下将生成好的JSON格式消息格式化输出到字符数组中，便于下面通过PubSubClient库发送到服务器
   StaticJsonDocument<256> doc;
@@ -112,6 +118,11 @@ void MReport_Sensor_inform()
       Serial.println("Success sending message");
     }else{
       Serial.println("Error sending message");
+    }
+}
+void Servo_act(int door,int ang){
+    if(door==1){
+    servo1.write(ang); 
     }
 }
 void callback(char *topic,byte *payload,unsigned int length)
@@ -174,7 +185,9 @@ void callback(char *topic,byte *payload,unsigned int length)
   switch(command_name[0])
   {
     case 'a':
-      sensor=doc["paras"]["ledpower"];                              //分析命令为谁，此处命令为a，a命令中有一个参数为ledpower
+      int door=doc["paras"]["door"];                              //分析命令为谁，此处命令为a，a命令中有一个参数为ledpower
+      int ang =doc["paras"]["angle"];
+      Servo_act(door,ang);
       break;
   }
 }
@@ -193,13 +206,12 @@ void MQTT_response(char *topic)
 }
 void setup(){
   Serial.begin(115200);
-  pinMode(led,OUTPUT);
   MQTT_Init();
+  servo1.attach(DOOR_PN);
 }
 void loop(){
   client.loop();
   MReport_Sensor_inform();                     //上报函数可以写在其他函数里，比如读取传感器值后判断时间间隔大于阈值后上报，再重新计时
   client.setCallback(callback);
-  Serial.println(x);
   delay(3000);
 }
