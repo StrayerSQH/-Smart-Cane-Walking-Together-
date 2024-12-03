@@ -18,3 +18,23 @@
 ├── 2024-OpenAtom Open-Source Competition
 ├── 2024-Computer-Design-Competition(IoT-Track)
 ```
+# Smart Cane, Walking Together
+## 🔥 About This Project
+"Smart Cane, Walking Together" is a mobility ecosystem designed specifically for the visually impaired, involving government, mobile phone manufacturers, and citizens. This system utilizes IoT and other technologies to embed microcontrollers in traditional canes, enabling them to connect with mobile phones and related infrastructure via Bluetooth. At traffic light intersections, the system can provide contactless services to change traffic light signals and guide the visually impaired to the correct side-walk path. In areas with municipal construction, relevant units set up temporary beacons to inform the visually impaired of potential dangers ahead. In both scenarios, the ecosystem can call upon nearby registered volunteers for assistance in crossing.
+
+## 🚀 Project Development History
+Project Launch
+· The project was initially conceived by Professor Zhang from the School of Computer Science at Sichuan University in April 2024. Subsequently, a team led by Cui, a student from the same school (team leader), including He, Wang, Sun, and several other members, collected some materials from April to June 2024 and planned to participate in the 2024 OpenAtom Open-Source Competition. However, due to some reasons, the team eventually disbanded, and the project was also terminated.
+Project Restart and Suspension
+· In September 2024, after discussion between Sun and Cui, students from the School of Computer Science at Sichuan University, it was decided that Sun would take over as team leader to restart the project. Unfortunately, due to some reasons, the project was suspended again.
+Project Award One
+· In November 2024, Sun and Wang from the School of Computer Science, Li and Niu from the School of Electronic Information Engineering, and Yang from the College of Literature and Journalism at Sichuan University used this project to participate in the 11th Concept Product Design Competition of the School of Electronic Information Engineering in 2024 and won the first prize.
+Project Restart Again
+· In December 2024, Sun handed over the project leadership to Wang, a student from the School of Computer Science at Sichuan University, who, as the new team leader, restarted the project and planned to participate in the 2024 National College Student Computer Design Competition (IoT Track).
+## 📝 Project Materials
+The following branches are included in this repository:
+```
+├── main
+├── 2024-OpenAtom Open-Source Competition
+├── 2024-Computer-Design-Competition(IoT-Track)
+```
