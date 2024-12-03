@@ -18,6 +18,7 @@
 ├── 2024-OpenAtom Open-Source Competition
 ├── 2024-Computer-Design-Competition(IoT-Track)
 ```
+注：2024年四川大学电子信息学院第十一届概念产品设计大赛相关资料归类于2024-Computer-Design-Competition(IoT-Track)中
 # Smart Cane, Walking Together
 ## 🔥 About This Project
 "Smart Cane, Walking Together" is a mobility ecosystem designed specifically for the visually impaired, involving government, mobile phone manufacturers, and citizens. This system utilizes IoT and other technologies to embed microcontrollers in traditional canes, enabling them to connect with mobile phones and related infrastructure via Bluetooth. At traffic light intersections, the system can provide contactless services to change traffic light signals and guide the visually impaired to the correct side-walk path. In areas with municipal construction, relevant units set up temporary beacons to inform the visually impaired of potential dangers ahead. In both scenarios, the ecosystem can call upon nearby registered volunteers for assistance in crossing.
@@ -38,3 +39,4 @@ The following branches are included in this repository:
 ├── 2024-OpenAtom Open-Source Competition
 ├── 2024-Computer-Design-Competition(IoT-Track)
 ```
+Note: The relevant materials of the 11th Conceptual Product Design Competition of the School of Electronics and Information of Sichuan University in 2024 are classified in the 2024-Computer-Design-Competition (IoT-Track).
