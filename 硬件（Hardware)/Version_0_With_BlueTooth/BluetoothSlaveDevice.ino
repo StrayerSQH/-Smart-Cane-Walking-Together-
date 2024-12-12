@@ -20,6 +20,8 @@ void setup() {
   pinMode(LED_2, OUTPUT);
   pinMode(LED_3, OUTPUT);
   pinMode(Light_Sensor, INPUT);
+  pinMode(RX, INPUT);
+  pinMode(TX, OUTPUT);
 }
 
 void loop() {
