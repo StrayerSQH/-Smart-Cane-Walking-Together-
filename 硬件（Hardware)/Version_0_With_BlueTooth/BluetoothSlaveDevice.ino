@@ -4,7 +4,7 @@
 #define LED_1 A4
 #define LED_2 A3
 #define LED_3 A2
-#define Light_Sensor 3
+#define Light_Sensor A1
 #define RX 3
 #define TX 4
 
