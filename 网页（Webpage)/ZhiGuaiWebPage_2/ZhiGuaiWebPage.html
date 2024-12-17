@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>智能拐杖，志愿同行</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .top_photo {
+            height: 430px; /* 设置高度为 400px */
+            width: 100%; /* 设置宽度为 100%，即与页面同宽 */
+            /* 其他样式保持不变 */
+        }
+            .top_photo .box-img {
+                width: 100%; /* 设置图片宽度为 100%，即与 .top_photo 元素同宽 */
+                height: 100%; /* 设置图片高度为 100%，即与 .top_photo 元素同高 */
+                object-fit: cover; /* 保持图片的宽高比，同时填充元素的整个内容框 */
+            }
+
+        nav {
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            padding: 10px;
+            margin-bottom: 0px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        dir {
+            background-color: #2759C1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            text-align: center;
+            font-size: 14px;
+            height: 50px;
+            margin-top: 0px;
+            padding-left: 100px;
+            padding-right: 100px;
+            gap: 50px;
+            margin-bottom: 0px;
+        }
+
+            dir a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: #fff;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            left: 50%;
+            top: 185%;
+            transform: translate(-50%, 0%);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1.0s ease-out;
+        }
+
+        .dropdown:hover .dropdown-content {
+            max-height: 200px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            font-size: 12px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #666;
+            }
+
+        .dropdown:hover > a {
+            color: #fff;
+        }
+
+        .box1 {
+            display: flex;
+            align-items: stretch; /* 子元素填充整个容器的高度 */
+            gap: 10px;
+            padding: 0; /* 设置内边距为0 */
+            background-color: #2759C1;
+            border: none; /* 移除边框 */
+            height: 50px;
+        }
+
+        .box-link1 {
+            display: flex;
+            justify-content: space-between; /* 将链接在容器中平均分布 */
+            align-items: center; /* 将链接垂直居中 */
+            height: 50px; /* 设置.box-link1的高度 */
+            background-color: #2759C1;
+            flex-grow: 1; /* 允许.box-link1元素在必要时增大宽度 */
+            margin-left: 45px;
+        }
+
+            .box-link1:first-child a {
+                margin-left: 50px; /* 设置第一个链接距左边的距离为50px */
+            }
+
+            .box-link1 a {
+                font-size: 14px;
+                color: #FFFFFF; /* 设置链接颜色为白色 */
+                text-decoration: none; /* 移除链接的下划线 */
+            }
+
+        .text-box {
+            column-count: 2; /* 将文本分为两栏 */
+            text-align: left; /* 将文本居中 */
+            padding: 10px; /* 设置上下左右的内边距为20px */
+            background-color: #fff; /* 设置背景颜色 */
+            color: #2759C1; /* 设置文本颜色 */
+            margin-top: 30px; /* 设置上边距为20px，使得文本框与链接之间有一定的距离 */
+            margin-bottom: 0px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+            .text-box p.chinese {
+                font-family: 'KaiTi', serif; /* 设置中文段落的字体为楷体 */
+            }
+
+        h5 {
+            color: #333;
+            font-size: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #f7f7f7;
+            margin-bottom: 0;
+        }
+
+        .youqinglianjie {
+            color: #fff;
+            font-size: 24px;
+            text-align: left;
+            background-color: #2759C1;
+            border: 2px solid #2759C1;
+            margin-top: 0px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-top: 10px; /* 设置文本距离上边界的距离 */
+            padding-bottom: 50px; /* 设置文本距离下边界的距离 */
+            margin-bottom: 0px;
+            margin-top: 0px;
+            list-style-type: none;
+        }
+
+            .youqinglianjie li a {
+                line-height: 20px;
+                flex: 1 0 calc(12.5% - 10px); /* 每行显示8个链接，每个链接占用12.5%，减去10px的间隔 */
+                margin-right: 10px; /* 设置链接之间的间隔 */
+                list-style-type: none; /* 移除列表前的点 */
+                font-size: 10px;
+                color: #fff;
+                white-space: nowrap; /* 防止文本换行 */
+                overflow: hidden; /* 隐藏超出链接宽度的文本 */
+                text-overflow: ellipsis; /* 使用省略号表示超W出的文本 */
+                list-style-type: none;
+            }
+
+                .youqinglianjie li a:hover {
+                    background-color: #32B8EA; /* 鼠标悬停时的背景颜色 */
+                    color: #fff; /* 鼠标悬停时的文字颜色 */
+                }
+
+        .banquan {
+            color: #2759C1;
+            font-size: 24px;
+            text-align: left;
+            background-color: #333;
+            border: 2px solid #333;
+            margin-top: 0px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding-top: 10px; /* 设置文本距离上边界的距离 */
+            padding-bottom: 50px; /* 设置文本距离下边界的距离 */
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .bottom {
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            background-color: #2759C1;
+            border: 2px solid #2759C1;
+            margin-top: 0px;
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 10px; /* 设置文本距离上边界的距离 */
+            padding-bottom: 10px; /* 设置文本距离下边界的距离 */
+            justify-content: center;
+            gap: 10px;
+        }
+
+            .bottom li {
+                color: #fff;
+                line-height: 20px;
+                font-size: 10px;
+                list-style-type: none;
+            }
+            .bottom li a:link {
+                color: #fff; /* 链接未被点击时的颜色 */
+            }
+
+            .bottom li a:hover {
+                background-color: #32B8EA; /* 鼠标悬停时的背景颜色 */
+                color: #fff; /* 鼠标悬停时的文字颜色 */
+            }
+                .bottom li a:link, .bottom li a:visited {
+                    color: #fff; /* 设置链接未被点击或已访问时的颜色为白色 */
+                }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .center-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .arrow {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .link-with-arrow {
+            display: flex;
+            align-items: center;
+        }
+        
+        .ProductContainer {
+            width: 90%; /* 增加容器宽度 */
+            max-width: 1200px; /* 设置最大宽度 */
+            margin: auto;
+            padding: 20px;
+        }
+
+        .introduction {
+            background: white;
+            padding: 40px; /* 增加内边距以拉长 */
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* 文本居中 */
+        }
+
+        .introduction ProductContainer2 {
+            font-size: 2em; /* 放大一倍 */
+            margin-top: 0px; 
+            display: inline-block;
+            border-bottom: 2px solid #0066cc; /* 红色下划线 */
+            text-align: center; /* 文本居中 */
+            font-family: "STXingkai", serif;
+        }
+
+        .introduction p {
+            font-family: "华文楷体", serif; /* 设置字体为华文楷体 */
+            text-align: left;
+            font-size: 20px;
+            text-indent:2em;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 特性内容居中 */
+        }
+
+        .feature {
+            background: #f9fafa;
+            padding: 20px; /* 增加内边距 */
+            margin: 10px;
+            border-radius: 10px;
+            flex: 1 1 200px;
+            text-align: center;
+            max-width: 400px; /* 设置特性最大宽度 */
+        }
+
+        .feature ProductContainer3 {
+            font-size: 3em; 
+            text-align: center; 
+            font-family: "STXingkai", serif;
+            color: #0066cc;
+        }
+
+        .feature p {
+            font-size: 1em; /* 缩小一倍 */
+            font-family: "华文楷体", serif; /* 设置字体为华文楷体 */
+            text-align: left;
+            text-indent: 2em;
+        }
+
+        ProductContainer2.major {
+            text-align: center;
+            font-size: 1.5em; /* 缩小字体 */
+            margin: 20px auto; /* 添加上边距并居中 */
+            text-align: center; /* 文本居中 */
+            display: inline-block;
+            border-bottom: 2px solid #0066cc; /* 红色下划线 */
+            padding-bottom: 5px; /* 美化下划线 */
+            font-family: "STXingkai", serif;
+        }
+        .four-column-container {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
+                }
+        
+                .column {
+                    flex: 1;
+                    margin: 10px;
+                    text-align: center;
+                    background: #f9fafa;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+        
+                .column h3 {
+                    font-size: 2em;
+                    color: #0066cc;
+                    margin-bottom: 10px;
+                    margin-top:10px;
+                    font-family: "STXingkai"
+                    
+                    
+                }
+        
+                .column img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 10px;
+                }
+        
+                .column p {
+                    font-size: 1em;
+                    font-family: "华文楷体", serif;
+                    text-align: left;
+                    text-indent: 2em;
+                }
+        
+                .middle-columns {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 2;
+                }
+        
+                .middle-columns .column {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+        
+                .middle-columns .column img {
+                    margin-bottom: 10px;
+                }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+        </div>
+        <div>
+            <a href="#home">首页</a>
+            <a>|</a>
+            <a href="#about">官方媒体</a>
+            <a>|</a>
+            <a href="#expert">关于我们</a>
+            <a>|</a>
+            <a href="#sub">投稿文章</a>
+            <a>|</a>
+            <input type="search" id="site-search" name="q" placeholder="搜索本站">
+        </div>
+    </nav>
+    <dir>
+        <div class="dropdown">
+            <a href="#home">首页</a>
+        </div>
+        <div class="dropdown">
+            <a href="#about">关于我们</a>
+            <div class="dropdown-content">
+                <a href="#sub1">团队介绍</a>
+                <a href="#sub3">团队风采</a>
+                <a href="#sub3">官方公众号</a>
+                <a href="#sub2">联系方式</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#contact">产品服务</a>
+            <div class="dropdown-content">
+                <a href="#sub1">智能拐杖，志愿同行</a>
+                <a href="#sub2">智愿APP</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#expert">社会服务</a>
+            <div class="dropdown-content">
+                <a href="#sub1">友好型城市建设</a>
+                <a href="#sub2">尊老敬老养老院行</a>
+                <a href="#sub3">我想和你交朋友</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#expert">政府/组织链接</a>
+            <div class="dropdown-content">
+                <a href="https://www.gov.cn/">中国政府网</a>
+                <a href="https://www.cdpf.org.cn/">中国残疾人联合会</a>
+                <a href="https://www.cdpee.org.cn/">中国残疾人就业创业网络服务平台</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#sub">资料下载</a>
+            <div class="dropdown-content">
+                <a href="#sub1">国家政策</a>
+                <a href="#sub2">国家法律</a>
+                <a href="#sub3">案例解读</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#sub">加入我们</a>
+            <div class="dropdown-content">
+                <a href="#sub1">成为志愿者</a>
+                <a href="#sub2">加入志愿团队</a>
+            </div>
+        </div>
+    </dir>
+
+    <div class="top_photo"><img src="智能拐杖 志愿同行.jpg" alt="3-6岁" class="box-img"></div>
+
+    <div class="box1">
+        <div class="box1">
+            <div class="box-link1">
+                <a href="">推荐链接：</a>
+            </div>
+            <div class="box-link1">
+                <a href="https://tuanwei.scu.edu.cn/index/bflm/zyfw.htm">志愿服务-青春川大</a>
+            </div>
+            <div class="box-link1">
+                <a href="https://news.cctv.com/2024/12/05/ARTIw38jcQKTZYPilq7C9OAM241205.shtml">各地开展志愿服务活动 弘扬志愿精神</a>
+            </div>
+            <div class="box-link1">
+                <a href="https://www.cdtf.gov.cn/cdtfxq/meiti/2021-05/04/content_946a30fd21ed457baf13f30f4f038748.shtml">青年志愿者，出发！</a>
+            </div>
+            <div class="box-link1">
+                <a href="https://sczyz.org.cn/zysc/#/login?redirect=%2Findex">志愿四川</a>
+            </div>
+        </div>
+    </div>
+    <div class="ProductContainer">
+        <div class="introduction">
+            <ProductContainer2>智能拐杖，志愿同行——以视障人群为例的服务生态</ProductContainer2>
+            <p>“智能拐杖·志愿同行”是一个专为视障人群设计的出行生态系统，由政府、手机制造企业、公民共同参与。</p>
+            <p>该系统硬件层面在传统拐杖中嵌入Arduino微处理器、HC-05蓝牙模块等器件，使拐杖能与手机及相关基础设施通过蓝牙连接。在红绿灯路口，该系统能提供无接触式改变红绿灯指示信号服务，并引导视障人群正确走向对面路口盲道口。在市政施工路段，相关单位设置临时信标，告知视障人群前方有危险。</p>
+            <p>两种场景下均可通过生态系统呼唤附近的注册志愿者，以获得协助通行。</p>
+        </div>
+
+        <ProductContainer2 class="major">为什么我们要做</ProductContainer2>
+        <div class="features">
+            <div class="feature">
+                <ProductContainer3>1730万</ProductContainer3> <!-- 放大一倍 -->
+                <p>我国是世界上盲和视力损伤人数最多的国家之一，根据第七次人口普查的数据显示，我国约有1730万视障人士。</p> <!-- 缩小一倍 -->
+            </div>
+            <div class="feature">
+                <ProductContainer3>45万</ProductContainer3> <!-- 放大一倍 -->
+                <p>我国视障群体数量增长速度快，每年新增盲人约45万。</p> <!-- 缩小一倍 -->
+            </div>
+            <div class="feature">
+                <ProductContainer3>13万</ProductContainer3> <!-- 放大一倍 -->
+                <p>我国每年新增低视力患者约13万。</p> <!-- 缩小一倍 -->
+            </div>
+        </div>
+        <ProductContainer2 class="major">我们如何做的</ProductContainer2>
+            <div class="container">
+                <div class="four-column-container">
+                    <!-- 最左边的板块 -->
+                    <div class="column">
+                        <h3>智能盲杖设计</h3>
+                        <img src="智能盲杖设计.jpg" alt="智能盲杖设计">
+                        <p>拐杖呈中空结构，内部由Arduino等低成本单片机、蓝牙发射器、信号接收器、PCB板、电池及充电口组成。其中，Arduino等低成本单片机为拐杖的计算处理单元。蓝牙发射器用于向红绿灯、手机、终端等发送信息。信号接收器用于接收信标发送的信号。其他部分为必须的配套设备。</p>
+                        <p>拐杖搭载有RSSI（Received Signal Strength Indicator）接收信号的强度指示算法和时差定位法。</p>
+                    </div>
+                    <div class="middle-columns">
+                        <div class="column">
+                            <h3>系统整体概览</h3>
+                            <img src="系统整体概览.jpg" alt="系统整体概览">
+                            <p>政府或相关施工单位在红绿灯路口处或工地周围设置信号发射源（后文简称信标），当视障人群借助拐杖靠近信标时，会触发内嵌于拐杖中的设备，向红绿灯控制计算机或施工单位在场负责人发送“有视障人群需要通过此路段，请协助通行”的信息。对于红绿灯，可根据实际情况改变红绿灯信号指挥交通以方便视障人群通过。对于施工单位，可派遣专人护送视障人群安全通过施工区域。在拐杖自动与相关基础建设设施连接时，也会向视障人群使用的手机发送询问“是否需要呼寻附近注册志愿者以协助通行”的信息。若视障人群选择“接受”，则手机相关程序借助互联网技术呼寻附近志愿者。如果根据算法计算出长时间内无法有志愿者能够赶到现场协助，则APP自动开启虚拟助手协助视障人群通过相关地带。</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>信标设计</h3>
+                        <img src="信标设计.jpg" alt="信标设计">
+                        <p>市政单位在红绿灯路口、市政施工路段摆放的指挥信号灯、警示牌等中嵌入一个可以发射无线电的和与拐杖链接的“信标”，用于提供无线电信息等。</p>
+                        <p>信标形状可为多种形态，确保实现相关功能即可。内部由Arduino等低成本单片机、蓝牙接收器、信号发生器、PCB板、联网设备、供电设备等组成。</p>
+            </div>
+        </div>
+
+    <div class="center-links">
+        <a href="#top"><img class="arrow" src="向上箭头.png" alt="向上箭头">返回顶部</a>
+        <a>|</a>
+        <a href="#top">探索更多<img class="arrow" src="向右箭头.png" alt="向右箭头"></a>
+    </div>
+    <div class="fengelan"></div>
+
+    <footer>
+        <div>
+            <h5>友情链接</h5>
+            <ul class="youqinglianjie">
+                <li><a href="http://www.wenming.cn/" target="_blank">中国文明网</a></li>
+                <li><a href="http://www.scwmw.cn" target="_blank">四川文明网</a></li>
+                <li><a href="http://shaoer.cntv.cn/" target="_blank">央视网青少年台</a></li>
+                <li><a href="http://www.cnfirst.net/" target="_blank">中国儿童教育网</a></li>
+                <li><a href="http://www.ccppg.com.cn/" target="_blank">中少在线</a></li>
+                <li><a href="http://www.haomahaoba.com/" target="_blank">全国网上家长学校</a></li>
+                <li><a href="http://www.zget.org/" target="_blank">中国儿童网</a></li>
+                <li><a href="http://www.cncv.org.cn/" target="_blank">中国社区志愿服务网</a></li>
+                <li><a href="http://www.w010w.com.cn/" target="_blank">中国网联网</a></li>
+                <li><a href="http://www.tjwenming.cn/" target="_blank">天津文明网</a></li>
+                <li><a href="http://sd.wenming.cn/" target="_blank">山东文明网</a></li>
+                <li><a href="http://edu.sxgov.cn/" target="_blank">黄河新闻网科教频道</a></li>
+                <li><a href="http://www.dzrbs.com/" target="_blank">达州日报网</a></li>
+                <li><a href="http://www.cqnews.net/" target="_blank">华龙网</a></li>
+                <li><a href="http://www.xncmw.cn/" target="_blank">西南传媒网</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul class="bottom">
+                <li><a href="http://www.kids21.cn/wzdb/gywm/201102/t20110214_39536.htm" target="_blank">关于我们</a></li>
+                <li style="color: #fff;">|</li>
+                <li><a href="http://www.kids21.cn/wzdb/lxwm/201102/t20110218_45795.htm" target="_blank">联系我们</a></li>
+                <li style="color: #fff;">|</li>
+                <li><a href="http://www.kids21.cn/wzdb/jrwm/201102/t20110218W_45824.htm" target="_blank">加入我们</a></li>
+                <li style="color: #fff;">|</li>
+                <li><a href="http://bbs.kids21.cn/forum-187-1.html" target="_blank">在线投稿</a></li>
+                <li style="color: #fff;">|</li>
+                <li><a href="#top">返回首页</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
